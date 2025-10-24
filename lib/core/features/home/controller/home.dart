@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:video_overlay_app/core/components/utils/package_export.dart';
 import 'package:video_overlay_app/core/features/home/view/home.dart';
 
@@ -13,11 +12,13 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenController extends State<HomeScreen> {
   late VideoPlayerController videoController;
   bool showControls = false;
+  bool initialized = false;
   Timer? _hideTimer;
   @override
   void initState() {
     super.initState();
-    // You can replace this URL with your own hosted MP4 or local asset.
+
+    // Use a web-friendly video (MP4 over HTTPS)
     videoController =
         VideoPlayerController.networkUrl(
             Uri.parse(
@@ -26,11 +27,20 @@ class HomeScreenController extends State<HomeScreen> {
             ),
           )
           ..initialize().then((_) {
-            videoController
-              ..setLooping(true)
-              ..setVolume(1)
-              ..play();
-            setState(() {});
+            videoController.setLooping(true);
+
+            // ✅ Web autoplay fix
+            if (kIsWeb) {
+              // Web browsers block autoplay unless muted
+              videoController.setVolume(1);
+              videoController.play();
+            } else {
+              // On mobile, play with sound
+              videoController.setVolume(1);
+              videoController.play();
+            }
+
+            setState(() => initialized = true);
           });
   }
 

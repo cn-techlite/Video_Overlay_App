@@ -1,10 +1,19 @@
-# video_overlay_app
+# Video Overlay App
 
-A new Flutter project.
+A project that is showing the continous looping of video with text overlay on it.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+This project demonstrates a Flutter-based custom video player with an overlay text and hidden controls — similar to YouTube’s interaction style.
+
+The video is displayed in a landscape ratio (16:9), centered on screen.
+
+Overlay text (e.g. “Welcome to InfiniteSimul”) remains visible at all times.
+
+Tap-to-toggle controls (progress indicator).
+
+Smooth animations and adaptable layout for both portrait and landscape orientations.
+
 
 A few resources to get you started if this is your first Flutter project:
 

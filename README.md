@@ -1,25 +1,89 @@
 # Video Overlay App
 
-A project that is showing the continous looping of video with text overlay on it.
+- A project that is showing the continuous looping of video with text overlay on it.
+
+- This project demonstrates a Flutter-based custom video player with an overlay text and hidden control
+
 
 ## Overview
 
-This project demonstrates a Flutter-based custom video player with an overlay text and hidden controls — similar to YouTube’s interaction style.
+Approach Explanation
 
-The video is displayed in a landscape ratio (16:9), centered on screen.
+The implementation is split into two main parts:
 
-Overlay text (e.g. “Welcome to InfiniteSimul”) remains visible at all times.
+1. Controller (HomeScreenController)
 
-Tap-to-toggle controls (progress indicator).
+Handles the lifecycle of VideoPlayerController.
 
-Smooth animations and adaptable layout for both portrait and landscape orientations.
+Initializes the video (from network).
 
 
-A few resources to get you started if this is your first Flutter project:
+Manages play/pause and cleanup in dispose().
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. View (HomeScreenView)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Uses a OrientationBuilder to maintain a landscape-style aspect ratio (16:9) regardless of device orientation.
+
+Builds a Stack containing:
+
+Video player (with rounded corners and shadows).
+
+Overlay text (always visible).
+
+Hidden video controls (shown when tapped).
+
+A state variable showControls (controlled via GestureDetector) toggles visibility of play/pause
+
+Animations and opacity transitions are used for a smooth, modern feel.
+
+##  Features
+
+✅ Auto-playing and looping background video  
+✅ Centered overlay text (customizable)  
+✅ Semi-transparent background for readability  
+✅ Responsive design for phones, tablets, TVs, and web  
+✅ Tap-to-toggle controls (progress indicator).
+✅ Smooth animations and adaptable layout for both portrait and landscape orientations.  
+✅ Floating Settings ⚙️ button to change:
+   - Overlay text  
+   - Text color  
+   - Font size 
+
+## Dependencies
+
+Add these to your pubspec.yaml:
+
+dependencies:
+  flutter:
+    sdk: flutter
+  video_player: ^2.10.0
+  video_player_web: ^2.4.0
+
+- Package Description
+   - video_player: Handles video playback across android, ios, mac, windows platforms
+   - video_player_web: Handles video playback across web platform
+
+  ##  Requirements
+
+- Flutter SDK 3.35.6
+- Dart 3.9.2
+- Internet connection because the video is online
+
+## ⚙️ Customization
+
+You can easily customize:
+
+- Default text: Change overlayText which has a default text of "Welcome to InfiniteSimul"
+
+- Default color: Update overlayColor
+
+- Default font size: Adjust fontSize
+
+- At runtime, press the ⚙️ floating button to open settings and update text, font size, and color dynamically.
+
+## 🛠️ Setup Instructions
+
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/cn-techlite/Video_Overlay_App.git
+   cd Video_Overlay_App

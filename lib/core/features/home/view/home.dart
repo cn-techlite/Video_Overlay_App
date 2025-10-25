@@ -16,6 +16,11 @@ class HomeScreenView extends StatelessView<HomeScreen, HomeScreenController> {
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black54,
+        onPressed: controller.openSettings,
+        child: const Icon(Icons.settings, color: Colors.white),
+      ),
       body: OrientationBuilder(
         builder: (context, orientation) {
           final isLandscape = orientation == Orientation.landscape;
@@ -76,14 +81,18 @@ class HomeScreenView extends StatelessView<HomeScreen, HomeScreenController> {
 
                         /// 📝 Overlay Text
                         Positioned(
-                          top: isLandscape ? 145 : 70,
+                          top: isLandscape
+                              ? 22.widthAdjusted
+                              : SizeConfig.deviceType == DeviceType.phone
+                              ? 7.heightAdjusted
+                              : 17.heightAdjusted,
                           left: 0,
                           right: 0,
                           child: Center(
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 1.widthAdjusted,
+                                vertical: 1.heightAdjusted,
                               ),
                               decoration: BoxDecoration(
                                 color: AppColors.bodyGrey.withValues(
@@ -92,10 +101,10 @@ class HomeScreenView extends StatelessView<HomeScreen, HomeScreenController> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                'Welcome to InfiniteSimul',
+                                controller.overlayText,
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22.textSize,
+                                  color: controller.overlayColor,
+                                  fontSize: controller.fontSize,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -115,7 +124,7 @@ class HomeScreenView extends StatelessView<HomeScreen, HomeScreenController> {
                                     ? Icons.pause_circle_filled
                                     : Icons.play_circle_fill,
                                 size: isLandscape ? 70 : 90,
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha: 0.8),
                               ),
                             ),
                           ),

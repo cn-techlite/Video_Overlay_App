@@ -14,12 +14,12 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenController extends State<HomeScreen> {
   late VideoPlayerController videoController;
   bool showControls = false;
-
+  bool initialized = false;
   Timer? _hideTimer;
 
   String overlayText = "Welcome to InfiniteSimul";
   Color overlayColor = AppColors.white;
-  double fontSize = 25.textSize;
+  double fontSize = 25;
 
   @override
   void initState() {
@@ -46,6 +46,8 @@ class HomeScreenController extends State<HomeScreen> {
               videoController.setVolume(1);
               videoController.play();
             }
+
+            setState(() => initialized = true);
           });
   }
 
@@ -78,6 +80,8 @@ class HomeScreenController extends State<HomeScreen> {
       text: overlayText,
     );
     double tempFontSize = fontSize;
+    // double tempFontSize = fontSize.clamp(16.0, 80.0);
+
     Color tempColor = overlayColor;
 
     showModalBottomSheet(
@@ -148,8 +152,8 @@ class HomeScreenController extends State<HomeScreen> {
                           style: TextStyle(color: Colors.white70),
                         ),
                         Slider(
-                          min: 16,
-                          max: 80,
+                          min: 16.textSize,
+                          max: 80.textSize,
                           divisions: 8,
                           value: tempFontSize,
                           label: tempFontSize.round().toString(),

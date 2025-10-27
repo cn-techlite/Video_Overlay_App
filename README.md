@@ -1,13 +1,16 @@
-# Video Overlay App
+# Overview Video Overlay App
 
 - A project that is showing the continuous looping of video with text overlay on it.
 
 - This project demonstrates a Flutter-based custom video player with an overlay text and hidden control
 
 
-## Overview
+##  Approach Explanation
 
-Approach Explanation
+- I followed the MVC Architecture and feature first approach, then i split the core folder into two which are the COMPONENTS and FEATURES
+
+- The components is were the tools and customization used on the app is located.
+- The Features is where the main or the core functionality of the app is found
 
 The implementation is split into two main parts:
 

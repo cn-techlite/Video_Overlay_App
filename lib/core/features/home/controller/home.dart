@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenController extends State<HomeScreen> {
   late VideoPlayerController videoController;
   bool showControls = false;
-  bool initialized = false;
+
   Timer? _hideTimer;
 
   String overlayText = "Welcome to InfiniteSimul";
@@ -46,8 +46,6 @@ class HomeScreenController extends State<HomeScreen> {
               videoController.setVolume(1);
               videoController.play();
             }
-
-            setState(() => initialized = true);
           });
   }
 
